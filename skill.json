@@ -1,0 +1,64 @@
+{
+  "name": "genpark-personal-agent-circadian-melanopic-lux-ratio-skill",
+  "version": "1.0.0",
+  "title": "Circadian Ocular Melanopic Ratio & CIE S 026 Lux Sensor Skill",
+  "description": "Cyanopic, melanopic, and photopic illuminance ratios (CIE S 026/E:2018), Equivalent Melanopic Lux (EML), and daylight pupil miosis controller. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "personal-agent",
+  "topics": [
+    "melanopic-lux",
+    "circadian-lighting",
+    "cie-s026",
+    "iprgc",
+    "personal-agent",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "calculate_equivalent_melanopic_lux",
+      "description": "Calculate Equivalent Melanopic Lux (EML) from photopic lux and light source Melanopic Daylight Ratio (M/P).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "photopic_lux": {
+            "type": "number"
+          },
+          "light_source_type": {
+            "type": "string",
+            "enum": [
+              "natural_daylight",
+              "cool_white_led_6500k",
+              "warm_incandescent_2700k",
+              "candlelight"
+            ]
+          }
+        },
+        "required": [
+          "photopic_lux",
+          "light_source_type"
+        ]
+      }
+    },
+    {
+      "name": "audit_well_building_circadian_lighting_compliance",
+      "description": "Audit daytime work area melanopic lux against WELL Building Standard v2 feature L03.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "eml_reading": {
+            "type": "number"
+          },
+          "time_of_day_24h": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "eml_reading",
+          "time_of_day_24h"
+        ]
+      }
+    }
+  ]
+}
